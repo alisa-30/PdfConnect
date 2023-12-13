@@ -3,6 +3,7 @@ PyPDF2
 pdf2image
 python-dotenv
 openai
+transformers
 tiktoken
 faiss-cpu
 pytesseract
