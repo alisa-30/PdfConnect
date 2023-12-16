@@ -111,7 +111,7 @@ def handle_userinput(user_q):
                         model="gpt-3.5-turbo",
                         messages=[
                             {
-                                "role": "assistant",
+                                "role": "system",
                                 "content": """You are a helpful assistant and Start with the sentence, Based on my serach and answer the question.""",
                             },
                             {"role": "user", "content": "{}".format(msg)},
