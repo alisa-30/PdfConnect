@@ -1,46 +1,4 @@
-import chainlit as cl
-
-# Define company names
-companies = ["Company A", "Company B", "Company C", "Company D", "Company E"]
-
-@cl.on_message
-async def main(message: cl.Message):
-    # Send initial message with company selection buttons
-    buttons = [cl.Button(name=company) for company in companies]
-    await cl.Message(
-        content="Please select a company:",
-        buttons=buttons
-    ).send()
-
-@cl.on_action("button")
-async def on_button_action(action: cl.Action):
-    selected_company = action.name
-    introduction = f"You selected {selected_company}. Here's a brief introduction: [Insert Introduction Here]"
-    
-    # Send the introduction with options for further actions
-    await cl.Message(
-        content=introduction,
-        buttons=[
-            cl.Button(name="Get Future Predictions", value=f"{selected_company}-predictions"),
-            cl.Button(name="Get Financial Details", value=f"{selected_company}-financial")
-        ]
-    ).send()
-
-@cl.on_action("button")
-async def on_detail_action(action: cl.Action):
-    value = action.value
-    company, detail = value.split('-')
-    
-    if detail == "predictions":
-        content = f"Future predictions for {company}: [Insert Predictions Here]"
-    elif detail == "financial":
-        content = f"Financial details for {company}: [Insert Financial Details Here]"
-    
-    await cl.Message(content=content).send()
-
-if __name__ == "__main__":
-    cl.run()
-    import streamlit as st
+import streamlit as st
 from dotenv import load_dotenv
 import openai, time, os
 import tempfile
